@@ -40,6 +40,12 @@ public class ItemTests {
 		
 		assertEquals("5", testItem2.getCopynumber());
 	}
+	
+	@Test
+	public void testToString() {
+		assertEquals("[1,3N6892F,0]", testItem.toString());
+
+	}
 
 }
 
