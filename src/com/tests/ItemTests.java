@@ -20,7 +20,7 @@ public class ItemTests {
 		testItem2 = new Item(5, "555555H", "1");
 		testItem2.setISBN("333333F");
 		testItem2.setItemid(7);
-		
+		testItem2.setCopynumber("5");
 		
 	}
 	
@@ -37,6 +37,8 @@ public class ItemTests {
 	public void testSetters() {
 		assertEquals(7, testItem2.getItemid());
 		assertEquals("333333F", testItem2.getISBN());
+		
+		assertEquals("5", testItem2.getCopynumber());
 	}
 
 }
