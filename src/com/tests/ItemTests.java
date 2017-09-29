@@ -13,17 +13,24 @@ public class ItemTests {
 	
 	@Before
 	public void setup() {
-		testItem = new Item(1, "3N6892F");
+		//Item for getter
+		testItem = new Item(1, "3N6892F", "0");
 		
-		testItem2 = new Item(5, "555555H");
+		//Item for setter
+		testItem2 = new Item(5, "555555H", "1");
 		testItem2.setISBN("333333F");
 		testItem2.setItemid(7);
+		
+		
 	}
 	
 	@Test
 	public void testGetters() {
 		assertEquals(1, testItem.getItemid());
 		assertEquals("3N6892F", testItem.getISBN());
+		
+		assertEquals("0", testItem.getCopynumber());
+		
 	}
 	
 	@Test
