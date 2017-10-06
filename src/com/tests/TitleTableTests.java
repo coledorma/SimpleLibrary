@@ -39,6 +39,12 @@ public class TitleTableTests {
 	public void failCreateTitle() {
 		assertEquals(false, titleTable.createtitle("9781442668584", "By the grace of God"));
 	}
+	
+	@Test
+	public void testLookup() {
+		assertEquals(true, titleTable.lookup("100967"));
+		assertEquals(false, titleTable.lookup("7"));
+	}
 
 }
 
