@@ -26,4 +26,24 @@ public class TitleTable {
     public List<Title> getTitleTable() {
 		return titleList;
 	}
+    
+    public Object createtitle(String string, String string2) {		
+		boolean result=true;
+		int flag=0;
+		for(int i=0;i<titleList.size();i++){
+			String ISBN=(titleList.get(i)).getISBN();
+			if(ISBN.equalsIgnoreCase(string)){
+				flag=flag+1;
+			}else{
+				flag=flag+0;	
+			}
+		}
+		if(flag==0){
+			Title newtitle=new Title(string,string2);
+			result=titleList.add(newtitle);
+		}else{
+			result=false;
+		}
+		return result;	
+	}
 }

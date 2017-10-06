@@ -29,6 +29,16 @@ public class TitleTableTests {
 			assertEquals(titlenameList[i], titleList.get(i).getBooktitle());
 		}
 	}
+	
+	@Test
+	public void passCreateTitle() {
+		assertEquals(true, titleTable.createtitle("100967", "The story of Cole Dorma"));
+	}
+	
+	@Test
+	public void failCreateTitle() {
+		assertEquals(false, titleTable.createtitle("9781442668584", "By the grace of God"));
+	}
 
 }
 
