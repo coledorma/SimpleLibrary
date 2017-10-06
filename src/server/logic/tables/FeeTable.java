@@ -91,5 +91,25 @@ public class FeeTable {
 		}
 		return result;
 	}
+	
+	public boolean lookup(int j) {
+		boolean result=true;
+		int fee = 0;
+		boolean user=FeeTable.getInstance().checkuser(j);
+		if(user){
+			for(int i=0;i<feeList.size();i++){
+				int userid=(feeList.get(i)).getUserid();
+				if(userid==j){
+					fee=fee+feeList.get(i).getFee();
+				}
+			}	
+		}else{
+			fee=0;
+		}
+		if(fee!=0){
+			result=false;
+		}
+		return result;
+	}
     
 }

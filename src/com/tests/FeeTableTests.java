@@ -67,4 +67,18 @@ public class FeeTableTests {
 		
 	}
 	
+	@Test
+	public void passLookup() {
+		assertEquals(true, feeTable.lookup(3));
+		assertEquals(true, feeTable.lookup(8));
+		assertEquals(true, feeTable.lookup(4));
+	}
+	
+	@Test
+	public void failLookup() {
+		assertEquals(false, feeTable.lookup(0));
+		assertEquals(false, feeTable.lookup(1));
+	}
+	
+	
 }
