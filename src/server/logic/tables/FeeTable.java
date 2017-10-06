@@ -74,5 +74,22 @@ public class FeeTable {
 		}
 
 	}
+	
+	public boolean checkuser(int j) {
+		boolean result=true;
+		int fee = 0;
+		for(int i=0;i<feeList.size();i++){
+			int userid=(feeList.get(i)).getUserid();
+			if(userid==j){
+				fee=fee+1;
+			}else{
+				fee=fee+0;
+			}
+		}	
+		if(fee==0){
+			result=false;
+		}
+		return result;
+	}
     
 }

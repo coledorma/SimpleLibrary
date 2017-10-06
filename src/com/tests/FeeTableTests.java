@@ -53,4 +53,18 @@ public class FeeTableTests {
 		
 	}
 	
+	@Test
+	public void passCheckUser() {
+		assertEquals(true, feeTable.checkuser(0));
+		assertEquals(true, feeTable.checkuser(1));
+		assertEquals(true, feeTable.checkuser(3));
+	}
+	
+	@Test
+	public void failCheckUser() {
+		assertEquals(false, feeTable.checkuser(8));
+		assertEquals(false, feeTable.checkuser(4));
+		
+	}
+	
 }
