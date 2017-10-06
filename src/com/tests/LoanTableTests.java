@@ -33,4 +33,16 @@ public class LoanTableTests {
 		assertEquals("9781442668584", loanList.get(0).getIsbn());
 	}
 	
+	@Test
+	public void passLookLimit() {
+		assertEquals(true, loanTable.looklimit(4));
+		assertEquals(true, loanTable.looklimit(5));
+	}
+	
+	@Test
+	public void failLookLimit() {
+		assertEquals(false, loanTable.looklimit(0));
+		assertEquals(false, loanTable.looklimit(1));
+	}
+	
 }
