@@ -12,10 +12,12 @@ import server.logic.tables.FeeTable;
 
 public class FeeTableTests {
 	FeeTable feeTable = null;
+	FeeTable feeTablePayFine = null;
 	
 	@Before
 	public void setup() {
 		feeTable = FeeTable.getInstance();
+		feeTablePayFine = FeeTable.getInstance();
 	}
 	
 	@Test
@@ -85,6 +87,20 @@ public class FeeTableTests {
 		assertEquals(5, feeTable.lookupfee(0));
 		assertEquals(100, feeTable.lookupfee(1));
 		assertEquals(3, feeTable.lookupfee(2));
+	}
+	
+	@Test
+	public void testPayFine() {
+		List<Fee> feeListPayFine = feeTablePayFine.getFeeTable();
+		
+		feeTablePayFine.applyfee(3, 360000);
+		assertEquals(1, feeListPayFine.get(3).getFee());
+		assertEquals(3, feeListPayFine.get(3).getUserid());
+		
+		assertEquals("Borrowing Items Exist", feeTablePayFine.payfine(0));
+		assertEquals("Borrowing Items Exist", feeTablePayFine.payfine(1));
+		
+		assertEquals("success", feeTablePayFine.payfine(3));
 	}
 	
 	
