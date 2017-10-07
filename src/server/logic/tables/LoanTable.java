@@ -184,4 +184,39 @@ public class LoanTable {
 		return result;
 	}
     
+    private String dateformat(Date date){
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String datestr=format1.format(date);
+		return datestr;
+	}
+    
+    public Object returnItem(int j, String string, String string2, Date date) {
+		String result="";
+		int flag=0;
+		int index=0;
+		for(int i=0;i<loanList.size();i++){
+			String ISBN=(loanList.get(i)).getIsbn();
+			String copynumber=(loanList.get(i)).getCopynumber();
+			int userid=(loanList.get(i)).getUserid();
+			if((userid==j) && ISBN.equalsIgnoreCase(string) && copynumber.equalsIgnoreCase(string2)){
+				flag=flag+1;
+				index=i;
+			}else{
+				flag=flag+0;	
+			}
+		}
+		if(flag!=0){
+			long time = date.getTime()-loanList.get(index).getDate().getTime();
+			loanList.remove(index);
+			if(time>Config.OVERDUE*Config.STIMULATED_DAY){
+				FeeTable.getInstance().applyfee(j,time);
+			}
+			result="success";
+		}else{
+			result="The Loan Does Not Exist";
+		}
+		
+		return result;
+	}
+    
 }

@@ -111,4 +111,14 @@ public class LoanTableTests {
 		assertEquals("Outstanding Fee Exists", loanTable.renewal(0, "9781611687910", "1", new Date()));
 	}
 	
+	@Test
+	public void testReturnItem() {
+		loanTable.createloan(3, "9781442667181", "1", new Date(), "");
+		
+		assertEquals("success", loanTable.returnItem(3, "9781442667181", "1", new Date()));
+		
+		assertEquals("The Loan Does Not Exist", loanTable.returnItem(1, "9781442667181", "1", new Date()));
+	}
+
+	
 }
