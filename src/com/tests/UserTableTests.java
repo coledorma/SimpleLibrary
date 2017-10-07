@@ -76,5 +76,14 @@ public class UserTableTests {
 		
 		assertEquals(-1, userTable.lookup("Not existing user"));
 	}
+	
+	@Test
+	public void testCheckUser() {
+		assertEquals(0, userTable.checkUser("Zhibo@carleton.ca", "Zhibo"));
+		
+		assertEquals(2, userTable.checkUser("Not existing", "Hmmmm"));
+		
+		assertEquals(1, userTable.checkUser("Zhibo@carleton.ca", "Not correct password"));
+	}
 
 }
