@@ -60,12 +60,13 @@ public class LoanTableTests {
 	
 	@Test
 	public void passLookup() {
-		assertEquals(false, loanTable.lookup(0, "1000098", "2"));
+		assertEquals(true, loanTable.lookup(0, "hey not here", "nope"));
+		assertEquals(true, loanTable.lookup(0, "9781442667181", "1"));
 	}
 	
 	@Test
 	public void failLookup() {
-		assertEquals(true, loanTable.lookup(0, "hey not here", "nope"));
+		assertEquals(false, loanTable.lookup(0, "1000098", "2"));
 	}
 	
 	@Test
@@ -76,6 +77,23 @@ public class LoanTableTests {
 	@Test
 	public void failCheckLimit() {
 		assertEquals(false, loanTable.checkLimit(4));
+	}
+	
+	@Test
+	public void testCreateLoan() {
+		assertEquals("User Invalid", loanTable.createloan(87, "", "", new Date(), ""));
+		
+		assertEquals("ISBN Invalid", loanTable.createloan(0, "Non-existant ISBN", "", new Date(), ""));
+		
+		assertEquals("Copynumber Invalid", loanTable.createloan(0, "9781442667181", "Copynumber not existing", new Date(), ""));
+		
+		assertEquals("success", loanTable.createloan(3, "9781442667181", "1", new Date(), ""));
+		
+		assertEquals("The Maximun Number of Items is Reached", loanTable.createloan(4, "9781611687910", "1", new Date(), ""));
+		
+		assertEquals("Outstanding Fee Exists", loanTable.createloan(0, "9781611687910", "1", new Date(), ""));
+		
+		assertEquals("The Item is Not Available", loanTable.createloan(0, "9781442668584", "1", new Date(), ""));
 	}
 	
 }
