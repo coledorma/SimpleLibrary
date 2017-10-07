@@ -69,4 +69,12 @@ public class UserTableTests {
 		
 		assertEquals("Active Loan Exists", userTableDelete.delete(2));
 	}
+	
+	@Test
+	public void testLookupID() {		
+		assertEquals(0, userTable.lookup("Zhibo@carleton.ca"));
+		
+		assertEquals(-1, userTable.lookup("Not existing user"));
+	}
+
 }
