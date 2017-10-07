@@ -2,7 +2,6 @@ package com.tests;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -13,10 +12,12 @@ import server.logic.tables.UserTable;
 
 public class UserTableTests {
 	UserTable userTable = null;
+	UserTable userTableDelete = null;
 	
 	@Before
 	public void setup() {
 		userTable = UserTable.getInstance();
+		userTableDelete = UserTable.getInstance();
 	}
 	
 	@Test
@@ -52,5 +53,20 @@ public class UserTableTests {
 	public void failLookup() {
 		assertEquals(false, userTable.lookup(5));
 		
+	}
+	
+	@Test
+	public void testDelete() {
+		List<User> userListDelete = userTableDelete.getUserTable();
+		userTableDelete.createuser("Cole@carleton.ca", "Cole");
+		
+		assertEquals("The User Does Not Exist", userTableDelete.delete(6));
+		
+		assertEquals("success", userTableDelete.delete(5));
+		assertEquals("N/A", userListDelete.get(5).getPassword());
+		
+		assertEquals("Outstanding Fee Exists", userTableDelete.delete(1));
+		
+		assertEquals("Active Loan Exists", userTableDelete.delete(2));
 	}
 }

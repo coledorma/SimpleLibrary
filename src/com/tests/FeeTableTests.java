@@ -86,7 +86,7 @@ public class FeeTableTests {
 	public void testLookupFee() {
 		assertEquals(5, feeTable.lookupfee(0));
 		assertEquals(100, feeTable.lookupfee(1));
-		assertEquals(3, feeTable.lookupfee(2));
+		assertEquals(0, feeTable.lookupfee(2));
 	}
 	
 	@Test

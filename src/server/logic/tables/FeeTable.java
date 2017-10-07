@@ -22,7 +22,7 @@ public class FeeTable {
     		//set up the default list with some instances
     		Fee fee = new Fee(0,5);
     		Fee fee2 = new Fee(1,100);
-    		Fee fee3 = new Fee(2,3);
+    		Fee fee3 = new Fee(2,0);
     		feeList.add(fee);
     		feeList.add(fee2);
     		feeList.add(fee3);
