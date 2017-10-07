@@ -119,6 +119,17 @@ public class LoanTableTests {
 		
 		assertEquals("The Loan Does Not Exist", loanTable.returnItem(1, "9781442667181", "1", new Date()));
 	}
+	
+	@Test
+	public void passCheckLoan() {
+		assertEquals(true, loanTable.checkLoan("Not a loan",""));
+		
+	}
+	
+	@Test
+	public void failCheckLoan() {
+		assertEquals(false, loanTable.checkLoan("1000098","2"));
+	}
 
 	
 }
