@@ -29,5 +29,15 @@ public class ItemTableTests {
 			assertEquals("1", itemList.get(i).getCopynumber());
 		}
 	}
+	
+	@Test
+	public void passLookup() {
+		assertEquals(true, itemTable.lookup("9781442668584", "1"));
+	}
+	
+	@Test
+	public void failLookup() {
+		assertEquals(false, itemTable.lookup("hey", "99"));
+	}
 
 }
