@@ -31,4 +31,14 @@ public class UserTableTests {
 		}
 
 	}
+	
+	@Test
+	public void passCreateUser() {
+		assertEquals(true, userTable.createuser("Cole@carleton.ca", "Cole"));
+	}
+	
+	public void failCreateUser() {
+		assertEquals(false, userTable.createuser("Yu@carleton.ca", "Yu"));
+		
+	}
 }
