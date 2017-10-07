@@ -47,5 +47,22 @@ public class UserTable {
 		}
 		return result;	
 	}
+    
+    public boolean lookup(int j) {
+		boolean result=true;
+		int flag=0;
+		for(int i=0;i<userList.size();i++){
+			int userid=(userList.get(i)).getUserid();
+			if(userid==j){
+				flag=flag+1;
+			}else{
+				flag=flag+0;	
+			}
+		}
+		if(flag==0){
+			result=false;
+		}
+		return result;
+	}
 
 }

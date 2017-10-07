@@ -37,8 +37,20 @@ public class UserTableTests {
 		assertEquals(true, userTable.createuser("Cole@carleton.ca", "Cole"));
 	}
 	
+	@Test
 	public void failCreateUser() {
 		assertEquals(false, userTable.createuser("Yu@carleton.ca", "Yu"));
+		
+	}
+	
+	@Test
+	public void passLookup() {
+		assertEquals(true, userTable.lookup(0));
+	}
+	
+	@Test
+	public void failLookup() {
+		assertEquals(false, userTable.lookup(5));
 		
 	}
 }
