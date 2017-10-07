@@ -96,4 +96,19 @@ public class LoanTableTests {
 		assertEquals("The Item is Not Available", loanTable.createloan(0, "9781442668584", "1", new Date(), ""));
 	}
 	
+	@Test
+	public void testRenewal() {
+		loanTable.createloan(3, "9781442667181", "1", new Date(), "");
+		
+		assertEquals("success", loanTable.renewal(3, "9781442667181", "1", new Date()));
+		
+		assertEquals("Renewed Item More Than Once for the Same Loan", loanTable.renewal(3, "9781442667181", "1", new Date()));
+		
+		assertEquals("The loan does not exist", loanTable.renewal(3, "9781442668584","1", new Date()));
+		
+		assertEquals("The Maximun Number of Items is Reached", loanTable.renewal(4, "9781611687910", "1", new Date()));
+		
+		assertEquals("Outstanding Fee Exists", loanTable.renewal(0, "9781611687910", "1", new Date()));
+	}
+	
 }
