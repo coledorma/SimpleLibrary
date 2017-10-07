@@ -49,5 +49,14 @@ public class ItemTableTests {
 	public void failCreateItem() {
 		assertEquals(false, itemTable.createitem("739867"));
 	}
+	
+	@Test
+	public void testDelete() {		
+		assertEquals("The Item Does Not Exist", itemTable.delete("Not existing", "1"));
+		
+		assertEquals("success", itemTable.delete("9781442616899", "1"));
+		
+		assertEquals("Active Loan Exists", itemTable.delete("9781442668584", "1"));
+	}
 
 }
