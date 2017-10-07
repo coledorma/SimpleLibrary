@@ -57,4 +57,14 @@ public class LoanTableTests {
 		assertEquals(false, loanTable.checkUser(1));
 	}
 	
+	@Test
+	public void passLookup() {
+		assertEquals(false, loanTable.lookup(0, "1000098", "2"));
+	}
+	
+	@Test
+	public void failLookup() {
+		assertEquals(true, loanTable.lookup(0, "hey not here", "nope"));
+	}
+	
 }
