@@ -45,4 +45,16 @@ public class LoanTableTests {
 		assertEquals(false, loanTable.looklimit(1));
 	}
 	
+	@Test
+	public void passCheckUser() {
+		assertEquals(true, loanTable.checkUser(3));
+		assertEquals(true, loanTable.checkUser(4));
+	}
+	
+	@Test
+	public void failCheckUser() {
+		assertEquals(false, loanTable.checkUser(0));
+		assertEquals(false, loanTable.checkUser(1));
+	}
+	
 }
