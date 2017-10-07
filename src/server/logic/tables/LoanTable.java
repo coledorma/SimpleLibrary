@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import server.logic.model.Loan;
+import utilities.Config;
 
 public class LoanTable {
 	List<Loan> loanList=new ArrayList<Loan>();
@@ -22,9 +23,15 @@ public class LoanTable {
     	Loan loan = new Loan(0,"9781442668584","1",new Date(),"0", "10009");
     	Loan loan2 = new Loan(1,"1000098","2",new Date(),"1", "77777");
     	Loan loan3 = new Loan(2,"1000777","3",new Date(),"1", "88888");
+    	Loan loan4 = new Loan(4,"1000777","3",new Date(),"1", "88888");
+    	Loan loan5 = new Loan(4,"1000777","3",new Date(),"1", "88888");
+    	Loan loan6 = new Loan(4,"1000777","3",new Date(),"1", "88888");
     	loanList.add(loan);
     	loanList.add(loan2);
     	loanList.add(loan3);
+    	loanList.add(loan4);
+    	loanList.add(loan5);
+    	loanList.add(loan6);
     };
     
     public static final LoanTable getInstance() {
@@ -86,5 +93,24 @@ public class LoanTable {
 		}
 		return result;
 	}
+    
+    public boolean checkLimit(int j) {
+		boolean result=true;
+		int flag=0;
+		for(int i=0;i<loanList.size();i++){
+			int userid=(loanList.get(i)).getUserid();
+			if(userid==j){
+				flag=flag+1;
+			}else{
+				flag=flag+0;	
+			}
+		}
+		if(flag>=Config.MAX_BORROWED_ITEMS){
+			result=false;
+		}
+		return result;
+	}
+    
+    
     
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import server.logic.model.Item;
 import server.logic.model.Loan;
 import server.logic.tables.LoanTable;
 
@@ -35,8 +36,8 @@ public class LoanTableTests {
 	
 	@Test
 	public void passLookLimit() {
-		assertEquals(true, loanTable.looklimit(4));
-		assertEquals(true, loanTable.looklimit(5));
+		assertEquals(true, loanTable.looklimit(10));
+		assertEquals(true, loanTable.looklimit(11));
 	}
 	
 	@Test
@@ -47,8 +48,8 @@ public class LoanTableTests {
 	
 	@Test
 	public void passCheckUser() {
-		assertEquals(true, loanTable.checkUser(3));
-		assertEquals(true, loanTable.checkUser(4));
+		assertEquals(true, loanTable.checkUser(10));
+		assertEquals(true, loanTable.checkUser(11));
 	}
 	
 	@Test
@@ -65,6 +66,16 @@ public class LoanTableTests {
 	@Test
 	public void failLookup() {
 		assertEquals(true, loanTable.lookup(0, "hey not here", "nope"));
+	}
+	
+	@Test
+	public void passCheckLimit() {
+		assertEquals(true, loanTable.checkLimit(0));
+	}
+	
+	@Test
+	public void failCheckLimit() {
+		assertEquals(false, loanTable.checkLimit(4));
 	}
 	
 }
