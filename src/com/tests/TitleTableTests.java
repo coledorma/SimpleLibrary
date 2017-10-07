@@ -45,6 +45,17 @@ public class TitleTableTests {
 		assertEquals(true, titleTable.lookup("100967"));
 		assertEquals(false, titleTable.lookup("7"));
 	}
+	
+	@Test
+	public void testDelete() {
+		assertEquals("The Title Does Not Exist", titleTable.delete("Non existant"));
+		
+		assertEquals("success", titleTable.delete("9781611687910"));
+		
+		assertEquals("Active Loan Exists", titleTable.delete("9781442668584"));
+		
+		
+	}
 
 }
 
