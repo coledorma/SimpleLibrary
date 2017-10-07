@@ -130,6 +130,17 @@ public class LoanTableTests {
 	public void failCheckLoan() {
 		assertEquals(false, loanTable.checkLoan("1000098","2"));
 	}
+	
+	@Test
+	public void passCheckLoanISBN() {
+		assertEquals(true, loanTable.checkLoan("Not a loan",""));
+		
+	}
+	
+	@Test
+	public void failCheckLoanISBN() {
+		assertEquals(false, loanTable.checkLoan("1000098","2"));
+	}
 
 	
 }
