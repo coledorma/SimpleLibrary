@@ -58,5 +58,12 @@ public class ItemTableTests {
 		
 		assertEquals("Active Loan Exists", itemTable.delete("9781442668584", "1"));
 	}
+	
+	@Test
+	public void testDeleteAll() {
+		List<Item> itemList = itemTable.getItemTable();
+		itemTable.deleteAll("9781611687910");
+		assertEquals("N/A", itemList.get(3).getISBN());
+	}
 
 }
