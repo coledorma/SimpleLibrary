@@ -39,5 +39,15 @@ public class ItemTableTests {
 	public void failLookup() {
 		assertEquals(false, itemTable.lookup("hey", "99"));
 	}
+	
+	@Test
+	public void passCreateItem() {
+		assertEquals(true, itemTable.createitem("9781442668584"));
+	}
+	
+	@Test
+	public void failCreateItem() {
+		assertEquals(false, itemTable.createitem("739867"));
+	}
 
 }
