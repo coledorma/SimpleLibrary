@@ -9,8 +9,10 @@ import org.junit.Test;
 
 import server.logic.handler.OutputHandler;
 import server.logic.handler.model.Output;
+import server.logic.model.Item;
 import server.logic.model.Title;
 import server.logic.model.User;
+import server.logic.tables.ItemTable;
 import server.logic.tables.TitleTable;
 import server.logic.tables.UserTable;
 
@@ -19,12 +21,14 @@ public class OutputHandlerTests {
 	OutputHandler outH = null;
 	UserTable userTable = null;
 	TitleTable titleTable = null;
+	ItemTable itemTable = null;
 	
 	@Before
 	public void setup() {
 		outH =  new OutputHandler();
 		userTable = UserTable.getInstance();
 		titleTable = TitleTable.getInstance();
+		itemTable = itemTable.getInstance();
 	}
 	
 	@Test
@@ -86,6 +90,27 @@ public class OutputHandlerTests {
 		List<Title> titles = titleTable.getTitleTable();
 		assertEquals("coledorma", titles.get(titles.size()-1).getBooktitle());
 	}
+	
+	@Test
+	public void testCreateItem() {
+		Output out = new Output("Your input should in this format:'ISBN',ISBN should be a 13-digit number",6);
+		assertEquals(out.getOutput(), outH.createItem("hey").getOutput());
+		assertEquals(out.getState(), outH.createItem("hey").getState());
+		
+		Output out2 = new Output("Success!",2);
+		Output create = outH.createItem("7777777777777");
+		assertEquals(out2.getOutput(), create.getOutput());
+		assertEquals(out2.getState(), create.getState());
+		
+		Output out3 = new Output("The Title Does Not Exist! Please create a title first:",5);
+		assertEquals(out3.getOutput(), outH.createItem("7777777777778").getOutput());
+		assertEquals(out3.getState(), outH.createItem("7777777777778").getState());
+		
+		List<Item> items = itemTable.getItemTable();
+		assertEquals("7777777777777", items.get(items.size()-1).getISBN());
+	}
+	
+	
 	
 	
 }
