@@ -110,7 +110,25 @@ public class OutputHandlerTests {
 		assertEquals("7777777777777", items.get(items.size()-1).getISBN());
 	}
 	
-	
+	@Test
+	public void testDeleteUser() {
+		Output out = new Output("Your input should in this format:'useremail'",7);
+		assertEquals(out.getOutput(), outH.deleteUser("hey").getOutput());
+		assertEquals(out.getState(), outH.deleteUser("hey").getState());
+		
+		Output out2 = new Output("Success!",2);
+		Output delete = outH.deleteUser("cole@carleton.ca");
+		assertEquals(out2.getOutput(), delete.getOutput());
+		assertEquals(out2.getState(), delete.getState());
+		
+		Output out3 = new Output("The User Does Not Exist!",2);
+		assertEquals(out3.getOutput(), outH.deleteUser("noone@carleton.ca").getOutput());
+		assertEquals(out3.getState(), outH.deleteUser("noone@carleton.ca").getState());
+		
+		List<User> users = userTable.getUserTable();
+		assertEquals("N/A", users.get(users.size()-1).getUsername());
+		assertEquals("Sun@carleton.ca", users.get(users.size()-2).getUsername());
+	}
 	
 	
 }
