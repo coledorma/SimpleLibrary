@@ -92,4 +92,19 @@ public class TitleTable {
 		return result;
 	}
     
+    public String toString() {
+		String out = "";
+		out += "[";
+		for (int i = 0; i <= titleList.size() - 1; i++) {
+			if (i == 0) {
+				out += titleList.get(i).getBooktitle();
+			} else {
+				out += "," + titleList.get(i).getBooktitle();
+			}
+		}
+		out += "]";
+		return out;
+	}
+
+    
 }

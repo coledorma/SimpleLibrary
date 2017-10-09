@@ -53,8 +53,11 @@ public class TitleTableTests {
 		assertEquals("success", titleTable.delete("9781611687910"));
 		
 		assertEquals("Active Loan Exists", titleTable.delete("9781442668584"));
-		
-		
+	}
+	
+	@Test
+	public void testToString() {
+		assertEquals("[By the grace of God,Dante's lyric poetry ,Courtesy lost,Writing for justice,The act in context]", titleTable.toString());
 	}
 
 }
