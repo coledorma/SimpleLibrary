@@ -72,4 +72,25 @@ public class OutputHandler {
 		return isNumber;
 	}
 	
+	public Output createTitle(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+        boolean number=isInteger(strArray[0]);
+        Object result="";
+        if(strArray.length!=2 || number!=true){
+        		output.setOutput("Your input should in this format:'ISBN,title',ISBN should be a 13-digit number");
+        		output.setState(CREATETITLE);
+        }else{
+        		result=TitleTable.getInstance().createtitle(strArray[0], strArray[1]);
+        	if(result.equals(true)){
+        		output.setOutput("Success!");
+        	}else{
+        		output.setOutput("The Title Already Exists!");
+        	}
+        	output.setState(CLERK);
+        }
+		return output;
+	}
+	
 }
