@@ -1,4 +1,4 @@
-package com.tests;
+package com.tests.unit;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;

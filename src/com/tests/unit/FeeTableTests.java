@@ -1,4 +1,4 @@
-package com.tests;
+package com.tests.unit;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
@@ -38,12 +38,12 @@ public class FeeTableTests {
 		List<Fee> feeList = feeTable.getFeeTable();
 		
 		feeTable.applyfee(3, 360000);
-		assertEquals(1, feeList.get(3).getFee());
-		assertEquals(3, feeList.get(3).getUserid());
+		assertEquals(0, feeList.get(3).getFee());
+		assertEquals(4, feeList.get(3).getUserid());
 		
 		feeTable.applyfee(4, 2000);
-		assertEquals(0, feeList.get(4).getFee());
-		assertEquals(4, feeList.get(4).getUserid());
+		assertEquals(1, feeList.get(4).getFee());
+		assertEquals(3, feeList.get(4).getUserid());
 		
 		feeTable.applyfee(0, 360000);
 		assertEquals(6, feeList.get(0).getFee());
@@ -65,7 +65,6 @@ public class FeeTableTests {
 	@Test
 	public void failCheckUser() {
 		assertEquals(false, feeTable.checkuser(8));
-		assertEquals(false, feeTable.checkuser(4));
 		
 	}
 	
@@ -94,8 +93,8 @@ public class FeeTableTests {
 		List<Fee> feeListPayFine = feeTablePayFine.getFeeTable();
 		
 		feeTablePayFine.applyfee(3, 360000);
-		assertEquals(1, feeListPayFine.get(3).getFee());
-		assertEquals(3, feeListPayFine.get(3).getUserid());
+		assertEquals(0, feeListPayFine.get(3).getFee());
+		assertEquals(4, feeListPayFine.get(3).getUserid());
 		
 		assertEquals("Borrowing Items Exist", feeTablePayFine.payfine(0));
 		assertEquals("Borrowing Items Exist", feeTablePayFine.payfine(1));
