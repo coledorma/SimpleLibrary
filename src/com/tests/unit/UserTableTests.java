@@ -85,5 +85,10 @@ public class UserTableTests {
 		
 		assertEquals(1, userTable.checkUser("Zhibo@carleton.ca", "Not correct password"));
 	}
+	
+	@Test
+	public void testToString() {
+		assertEquals("[Zhibo@carleton.ca,Yu@carleton.ca,Michelle@carleton.ca,Kevin@carleton.ca,Sun@carleton.ca]", userTable.toString());
+	}
 
 }

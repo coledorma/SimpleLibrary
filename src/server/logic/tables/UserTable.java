@@ -137,5 +137,19 @@ public class UserTable {
 		}
 		return result;
 	}
+    
+    public String toString() {
+    		String out = "";
+    		out += "[";
+    		for (int i = 0; i <= userList.size() - 1; i++) {
+    			if (i == 0) {
+    				out += userList.get(i).getUsername();
+    			} else {
+    				out += "," + userList.get(i).getUsername();
+    			}
+    		}
+    		out += "]";
+    		return out;
+    	}
 
 }
