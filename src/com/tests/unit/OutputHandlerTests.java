@@ -130,5 +130,24 @@ public class OutputHandlerTests {
 		assertEquals("Sun@carleton.ca", users.get(users.size()-2).getUsername());
 	}
 	
+	@Test
+	public void testDeleteTitle() {
+		Output out = new Output("Your input should in this format:'ISBN',ISBN should be a 13-digit number",8);
+		assertEquals(out.getOutput(), outH.deleteTitle("hey").getOutput());
+		assertEquals(out.getState(), outH.deleteTitle("hey").getState());
+		
+		Output out2 = new Output("Success!",2);
+		Output delete = outH.deleteTitle("9781317594277");
+		assertEquals(out2.getOutput(), delete.getOutput());
+		assertEquals(out2.getState(), delete.getState());
+		
+		Output out3 = new Output("The Title Does Not Exist!",2);
+		assertEquals(out3.getOutput(), outH.deleteTitle("7777777777778").getOutput());
+		assertEquals(out3.getState(), outH.deleteTitle("7777777777778").getState());
+		
+		List<Title> titles = titleTable.getTitleTable();
+		assertEquals("Writing for justice", titles.get(titles.size()-1).getBooktitle());
+	}
+	
 	
 }
