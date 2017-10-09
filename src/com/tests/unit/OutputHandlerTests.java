@@ -32,4 +32,26 @@ public class OutputHandlerTests {
 		assertEquals(out3.getState(), outH.createUser("Zhibo@carleton.ca,zhibo").getState());
 		
 	}
+	
+	@Test
+	public void passIsInteger() {
+		assertEquals(true, OutputHandler.isInteger("7777777777777"));
+	}
+	
+	@Test
+	public void failIsInteger() {
+		assertEquals(false, OutputHandler.isInteger("13"));
+		assertEquals(false, OutputHandler.isInteger("hey"));
+	}
+	
+	@Test
+	public void passIsNumber() {
+		assertEquals(true, OutputHandler.isNumber("7777777777777"));
+		assertEquals(true, OutputHandler.isNumber("13"));
+	}
+	
+	@Test
+	public void failIsNumber() {
+		assertEquals(false, OutputHandler.isNumber("hey"));
+	}
 }
