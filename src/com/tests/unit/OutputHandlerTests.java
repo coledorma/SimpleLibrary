@@ -149,5 +149,30 @@ public class OutputHandlerTests {
 		assertEquals("Writing for justice", titles.get(titles.size()-1).getBooktitle());
 	}
 	
+	@Test
+	public void testDeleteItem() {
+		Output out = new Output("Your input should in this format:'ISBN,copynumber',ISBN should be a 13-digit number",9);
+		assertEquals(out.getOutput(), outH.deleteItem("hey").getOutput());
+		assertEquals(out.getState(), outH.deleteItem("hey").getState());
+		
+		Output outcop = new Output("Your input should in this format:'ISBN,copynumber',Copynumber should be a number",9);
+		assertEquals(outcop.getOutput(), outH.deleteItem("7777777777777,hey").getOutput());
+		assertEquals(outcop.getState(), outH.deleteItem("7777777777777,hey").getState());
+		
+		
+		Output out2 = new Output("Success!",2);
+		Output delete = outH.deleteItem("9781442667181,1");
+		assertEquals(out2.getOutput(), delete.getOutput());
+		assertEquals(out2.getState(), delete.getState());
+		
+		Output out3 = new Output("The Item Does Not Exist!",2);
+		assertEquals(out3.getOutput(), outH.deleteItem("7777777777778,1").getOutput());
+		assertEquals(out3.getState(), outH.deleteItem("7777777777778,1").getState());
+		
+		List<Item> items = itemTable.getItemTable();
+		System.out.println(items.size());
+		assertEquals("7777777777777", items.get(items.size()-1).getISBN());
+	}
+	
 	
 }
