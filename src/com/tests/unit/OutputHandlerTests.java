@@ -194,19 +194,19 @@ public class OutputHandlerTests {
 		assertEquals(outcop2.getState(), outH.borrow("Zhibo@carleton.ca,hey,1").getState());
 		
 		Output out2 = new Output("Success!",3);
-		Output borrow = outH.borrow("Kevin@carleton.ca,9781442616899,1");
+		Output borrow = outH.borrow("Michelle@carleton.ca,9781442616899,1");
 		assertEquals(out2.getOutput(), borrow.getOutput());
 		assertEquals(out2.getState(), borrow.getState());
 		
-		Output outCopy = new Output("Copynumber Invalid!",2);
-		Output borrow2 = outH.borrow("Kevin@carleton.ca,9781442667181,1");
-		assertEquals(out2.getOutput(), borrow.getOutput());
-		assertEquals(out2.getState(), borrow.getState());
+		Output outCopy = new Output("Copynumber Invalid!",3);
+		Output borrow2 = outH.borrow("Kevin@carleton.ca,9781442667181,3");
+		assertEquals(outCopy.getOutput(), borrow2.getOutput());
+		assertEquals(outCopy.getState(), borrow2.getState());
 		
-		Output outCopy2 = new Output("ISBN Invalid!",2);
+		Output outCopy2 = new Output("ISBN Invalid!",3);
 		Output borrow3 = outH.borrow("Kevin@carleton.ca,9781442667189,1");
-		assertEquals(out2.getOutput(), borrow.getOutput());
-		assertEquals(out2.getState(), borrow.getState());
+		assertEquals(outCopy2.getOutput(), borrow3.getOutput());
+		assertEquals(outCopy2.getState(), borrow3.getState());
 		
 		Output out3 = new Output("Please pay your fine first because Outstanding Fee Exists!",13);
 		assertEquals(out3.getOutput(), outH.borrow("Zhibo@carleton.ca,9781611687910,1").getOutput());
@@ -231,6 +231,48 @@ public class OutputHandlerTests {
     		Output out9 = new Output("The Maximun Number of Items is Reached!",3);
     		assertEquals(out9.getOutput(), outH.borrow("Yu@carleton.ca,7777777777777,1").getOutput());
     		assertEquals(out9.getState(), outH.borrow("Yu@carleton.ca,7777777777777,1").getState());
+	}
+	
+	@Test
+	public void testRenew() {
+		Output out = new Output("Your input should in this format:'useremail,ISBN,copynumber'",11);
+		assertEquals(out.getOutput(), outH.renew("hey").getOutput());
+		assertEquals(out.getState(), outH.renew("hey").getState());
+		
+		Output outcop = new Output("Your input should in this format:'useremail,ISBN,copynumber'",11);
+		assertEquals(outcop.getOutput(), outH.renew("Zhibo@carleton.ca,7777777777777,hey").getOutput());
+		assertEquals(outcop.getState(), outH.renew("Zhibo@carleton.ca,7777777777777,hey").getState());
+		
+		Output outcop2 = new Output("Your input should in this format:'useremail,ISBN,copynumber'",11);
+		assertEquals(outcop2.getOutput(), outH.renew("Zhibo@carleton.ca,hey,1").getOutput());
+		assertEquals(outcop2.getState(), outH.renew("Zhibo@carleton.ca,hey,1").getState());
+		
+		/*outH.borrow("Michelle@carleton.ca,9781317594277,1");
+		Loan loan2=new Loan(2,"9781317594277","1",new Date(),"0","9");
+		Output outSuc = new Output("Success!",3);
+		Output renewSuc = outH.renew("Michelle@carleton.ca,9781442616899,1");
+		assertEquals(outSuc.getOutput(), renewSuc.getOutput());
+		assertEquals(outSuc.getState(), renewSuc.getState());*/
+		
+		Output out2 = new Output("The loan does not exist!",3);
+		Output renew = outH.renew("Kevin@carleton.ca,9781442616899,1");
+		assertEquals(out2.getOutput(), renew.getOutput());
+		assertEquals(out2.getState(), renew.getState());
+		
+		Output out3 = new Output("Please pay your fine first because Outstanding Fee Exists!",13);
+		assertEquals(out3.getOutput(), outH.renew("Zhibo@carleton.ca,9781611687910,1").getOutput());
+		assertEquals(out3.getState(), outH.renew("Zhibo@carleton.ca,9781611687910,1").getState());
+		
+		Output out4 = new Output("The User Does Not Exist!",11);
+		assertEquals(out4.getOutput(), outH.renew("cole@me.com,7777777777778,1").getOutput());
+		assertEquals(out4.getState(), outH.renew("cole@me.com,7777777777778,1").getState());
+		
+		List<Loan> loanList = loanTable.getLoanTable();
+    		loanList.get(3).setRenewstate("8");
+    		
+    		Output out9 = new Output("The Maximun Number of Items is Reached!",3);
+    		assertEquals(out9.getOutput(), outH.borrow("Kevin@carleton.ca,7777777777777,1").getOutput());
+    		assertEquals(out9.getState(), outH.borrow("Kevin@carleton.ca,7777777777777,1").getState());
 	}
 	
 	
