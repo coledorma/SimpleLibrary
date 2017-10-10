@@ -70,4 +70,94 @@
 
 @2017-09-28 08:59:44 INFO  LibServer:111 - Output to 127.0.0.1:52274 Who Are you?Clerk or User?
 
+@2017-10-10 18:43:17 INFO  LibServer:34 - Binding to port 5050
+@2017-10-10 18:43:17 INFO  LibServer:63 - Waiting for a client ...
+@2017-10-10 18:43:17 INFO  LibServer:48 - Server started: ServerSocket[addr=0.0.0.0/0.0.0.0,localport=5050] 9
+@2017-10-10 18:43:25 INFO  LibServer:72 - Client accepted : Client Address : [/127.0.0.1:57175] Client Socket: [57175 ]
+
+@2017-10-10 18:43:25 INFO  LibClient:31 - 57175 : Connected to server: /127.0.0.1
+@2017-10-10 18:43:25 INFO  LibClient:32 - 57175 : Connected to portid: 57175
+@2017-10-10 18:43:25 INFO  LibServer:63 - Waiting for a client ...
+@2017-10-10 18:43:25 INFO  ServerThread:53 - Class: ServerThread: Server Thread Running__57175
+@2017-10-10 18:43:30 INFO  LibServer:102 - Input from 127.0.0.1:57175 hello
+@2017-10-10 18:43:30 INFO  LibServer:119 - Output to 127.0.0.1:57175 Who Are you?Clerk or User?
+
+@2017-10-10 18:43:37 INFO  LibServer:102 - Input from 127.0.0.1:57175 clerk
+@2017-10-10 18:43:37 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please Input The Password:
+
+@2017-10-10 18:43:40 INFO  LibServer:102 - Input from 127.0.0.1:57175 admin
+@2017-10-10 18:43:40 INFO  LibServer:111 - Output to 127.0.0.1:57175 What can I do for you?Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:43:46 INFO  LibServer:102 - Input from 127.0.0.1:57175 Monitor
+@2017-10-10 18:43:46 INFO  LibServer:111 - Output to 127.0.0.1:57175 
+
+@2017-10-10 18:43:57 INFO  LibServer:102 - Input from 127.0.0.1:57175 monitor
+@2017-10-10 18:43:57 INFO  LibServer:111 - Output to 127.0.0.1:57175 [Zhibo@carleton.ca,Yu@carleton.ca,Michelle@carleton.ca,Kevin@carleton.ca,Sun@carleton.ca]
+[By the grace of God,Dante's lyric poetry ,Courtesy lost,Writing for justice,The act in context]
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
+@2017-10-10 18:47:08 INFO  LibServer:102 - Input from 127.0.0.1:57175 null
+@2017-10-10 18:47:08 INFO  ServerThread:44 - Class: ServerThread: Exception thrown : Broken pipe (Write failed) 
+
+@2017-10-10 18:47:08 INFO  LibServer:111 - Output to 127.0.0.1:57175 Please select from the menu.Menu:Create User/Title/Item,Delete User/Title/Item,Monitor
+
 @
