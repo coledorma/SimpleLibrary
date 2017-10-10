@@ -356,4 +356,15 @@ public class OutputHandler {
 		return output;
 	}
 	
+	public Output monitor() {
+        Output output = new Output("", 0);
+        String titles = TitleTable.getInstance().toString();
+        String users = UserTable.getInstance().toString();
+        String out = users + "\n" + titles;
+        output.setOutput(out);
+        output.setState(CLERK);
+        return output;
+
+    }
+	
 }

@@ -139,8 +139,7 @@ public class UserTable {
 	}
     
     public String toString() {
-    		String out = "";
-    		out += "[";
+    		String out = "[";
     		for (int i = 0; i <= userList.size() - 1; i++) {
     			if (i == 0) {
     				out += userList.get(i).getUsername();

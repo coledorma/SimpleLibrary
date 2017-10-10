@@ -342,4 +342,13 @@ public class OutputHandlerTests {
     		
 	}
 	
+	@Test
+	public void testMonitor() {
+		Output expected = new Output("[Zhibo@carleton.ca,Yu@carleton.ca,Michelle@carleton.ca,Kevin@carleton.ca,Sun@carleton.ca,cole@carleton.ca]\n" + 
+				"[By the grace of God,Dante's lyric poetry ,Courtesy lost,Writing for justice,coledorma]",2);
+		Output actual = outH.monitor();
+		assertEquals(expected.getOutput(), actual.getOutput());
+    		
+	}
+	
 }
