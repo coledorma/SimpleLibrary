@@ -175,7 +175,6 @@ public class OutputHandlerTests {
 		assertEquals(out3.getState(), outH.deleteItem("7777777777778,1").getState());
 		
 		List<Item> items = itemTable.getItemTable();
-		System.out.println(items.size());
 		assertEquals("7777777777777", items.get(items.size()-1).getISBN());
 	}
 	
@@ -247,10 +246,10 @@ public class OutputHandlerTests {
 		assertEquals(outcop2.getOutput(), outH.renew("Zhibo@carleton.ca,hey,1").getOutput());
 		assertEquals(outcop2.getState(), outH.renew("Zhibo@carleton.ca,hey,1").getState());
 		
-		/*outH.borrow("Michelle@carleton.ca,9781317594277,1");
-		Loan loan2=new Loan(2,"9781317594277","1",new Date(),"0","9");
+		/*//outH.borrow("Michelle@carleton.ca,9781317594277,1");
+		//Loan loan2=new Loan(2,"9781317594277","1",new Date(),"0","9");
 		Output outSuc = new Output("Success!",3);
-		Output renewSuc = outH.renew("Michelle@carleton.ca,9781442616899,1");
+		Output renewSuc = outH.renew("Michelle@carleton.ca,1000777,3");
 		assertEquals(outSuc.getOutput(), renewSuc.getOutput());
 		assertEquals(outSuc.getState(), renewSuc.getState());*/
 		
@@ -270,9 +269,38 @@ public class OutputHandlerTests {
 		List<Loan> loanList = loanTable.getLoanTable();
     		loanList.get(3).setRenewstate("8");
     		
-    		Output out9 = new Output("The Maximun Number of Items is Reached!",3);
-    		assertEquals(out9.getOutput(), outH.borrow("Kevin@carleton.ca,7777777777777,1").getOutput());
-    		assertEquals(out9.getState(), outH.borrow("Kevin@carleton.ca,7777777777777,1").getState());
+    		/*Output out9 = new Output("Renewed Item More Than Once for the Same Loan!",3);
+    		assertEquals(out9.getOutput(), outH.borrow("Kevin@carleton.ca,7777777777779,1").getOutput());
+    		assertEquals(out9.getState(), outH.borrow("Kevin@carleton.ca,7777777777779,1").getState());*/
+	}
+	
+	@Test
+	public void testReturnBook() {
+		Output expected = new Output("Success!",3);
+		Output actual = outH.returnBook("Zhibo@carleton.ca,9781442668584,1");
+		assertEquals(expected.getOutput(), actual.getOutput());
+		
+		Output out = new Output("Your input should in this format:'useremail,ISBN,copynumber'",12);
+		assertEquals(out.getOutput(), outH.returnBook("hey").getOutput());
+		assertEquals(out.getState(), outH.returnBook("hey").getState());
+		
+		Output outcop = new Output("Your input should in this format:'useremail,ISBN,copynumber'",3);
+		assertEquals(outcop.getOutput(), outH.returnBook("Zhibo@carleton.ca,7777777777777,hey").getOutput());
+		assertEquals(outcop.getState(), outH.returnBook("Zhibo@carleton.ca,7777777777777,hey").getState());
+		
+		Output outcop2 = new Output("Your input should in this format:'useremail,ISBN,copynumber'",3);
+		assertEquals(outcop2.getOutput(), outH.returnBook("Zhibo@carleton.ca,hey,1").getOutput());
+		assertEquals(outcop2.getState(), outH.returnBook("Zhibo@carleton.ca,hey,1").getState());
+		
+		Output out2 = new Output("The Loan Does Not Exist!",3);
+		Output renew = outH.returnBook("Kevin@carleton.ca,9781442616899,1");
+		assertEquals(out2.getOutput(), renew.getOutput());
+		assertEquals(out2.getState(), renew.getState());
+
+		Output out4 = new Output("The User Does Not Exist!",12);
+		assertEquals(out4.getOutput(), outH.returnBook("cole@me.com,7777777777778,1").getOutput());
+		assertEquals(out4.getState(), outH.returnBook("cole@me.com,7777777777778,1").getState());
+    		
 	}
 	
 	
