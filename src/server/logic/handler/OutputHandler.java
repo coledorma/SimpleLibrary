@@ -331,4 +331,29 @@ public class OutputHandler {
 		return output;
 	}
 	
+	public Output userLogin(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+        boolean email=strArray[0].contains("@");
+        int result=0;
+        if(strArray.length!=2 || email!=true){
+        	output.setOutput("Your input should in this format:'username,password'");
+        	output.setState(USERLOGIN);
+        }else{
+        	result=UserTable.getInstance().checkUser(strArray[0], strArray[1]);
+        	if(result==0){
+        		output.setOutput("What can I do for you?Menu:Borrow,Renew,Return,Pay Fine.");
+            	output.setState(USER);
+        	}else if(result==1){
+        		output.setOutput("Wrong Password!Please Input Username and Password:'username,password'");
+            	output.setState(USERLOGIN);
+        	}else{
+        		output.setOutput("The User Does Not Exist!Please The Username and Password:'username,password'");
+            	output.setState(USERLOGIN);
+        	}
+        }
+		return output;
+	}
+	
 }

@@ -322,5 +322,24 @@ public class OutputHandlerTests {
     		
 	}
 	
+	@Test
+	public void testUserLogin() {
+		Output expected = new Output("What can I do for you?Menu:Borrow,Renew,Return,Pay Fine.",3);
+		Output actual = outH.userLogin("Kevin@carleton.ca,kevin");
+		assertEquals(expected.getOutput(), actual.getOutput());
+		
+		Output out = new Output("Your input should in this format:'username,password'",15);
+		assertEquals(out.getOutput(), outH.userLogin("hey").getOutput());
+		assertEquals(out.getState(), outH.userLogin("hey").getState());
+
+		Output out4 = new Output("The User Does Not Exist!Please The Username and Password:'username,password'",15);
+		assertEquals(out4.getOutput(), outH.userLogin("cole@me.com,hey").getOutput());
+		assertEquals(out4.getState(), outH.userLogin("cole@me.com,hey").getState());
+		
+		Output out2 = new Output("Wrong Password!Please Input Username and Password:'username,password'",15);
+		assertEquals(out2.getOutput(), outH.userLogin("Kevin@carleton.ca,wrong").getOutput());
+		assertEquals(out2.getState(), outH.userLogin("Kevin@carleton.ca,wrong").getState());
+    		
+	}
 	
 }
