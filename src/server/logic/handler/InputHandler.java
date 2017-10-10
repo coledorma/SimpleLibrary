@@ -69,9 +69,6 @@ public class InputHandler {
 	            	state=CREATEUSER;
 	            	oo.setOutput(output);
 		            oo.setState(state);
-		        } else if (input.equalsIgnoreCase("monitor")) {
-	            	state=MONITOR;
-	            	oo.setState(state);
 	            }else if (input.equalsIgnoreCase("create title")) {
 	            	output = "Please Input Title Info:'ISBN,title'";
 	            	state=CREATETITLE;
@@ -97,6 +94,9 @@ public class InputHandler {
 	            	state=DELETEITEM;
 	            	oo.setOutput(output);
 		            oo.setState(state);
+	            } else if (input.equalsIgnoreCase("monitor")) {
+	            	state=MONITOR;
+	            	oo.setState(state);
 	            }else if(input.equalsIgnoreCase("log out")){
 	            	output = "Successfully Log Out!";
 	                state = WAITING;
