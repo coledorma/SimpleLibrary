@@ -2,6 +2,7 @@ package com.tests.unit;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -10,9 +11,11 @@ import org.junit.Test;
 import server.logic.handler.OutputHandler;
 import server.logic.handler.model.Output;
 import server.logic.model.Item;
+import server.logic.model.Loan;
 import server.logic.model.Title;
 import server.logic.model.User;
 import server.logic.tables.ItemTable;
+import server.logic.tables.LoanTable;
 import server.logic.tables.TitleTable;
 import server.logic.tables.UserTable;
 
@@ -22,6 +25,7 @@ public class OutputHandlerTests {
 	UserTable userTable = null;
 	TitleTable titleTable = null;
 	ItemTable itemTable = null;
+	LoanTable loanTable = null;
 	
 	@Before
 	public void setup() {
@@ -29,6 +33,7 @@ public class OutputHandlerTests {
 		userTable = UserTable.getInstance();
 		titleTable = TitleTable.getInstance();
 		itemTable = itemTable.getInstance();
+		loanTable = loanTable.getInstance();
 	}
 	
 	@Test
@@ -172,6 +177,60 @@ public class OutputHandlerTests {
 		List<Item> items = itemTable.getItemTable();
 		System.out.println(items.size());
 		assertEquals("7777777777777", items.get(items.size()-1).getISBN());
+	}
+	
+	@Test
+	public void testBorrow() {
+		Output out = new Output("Your input should in this format:'useremail,ISBN,copynumber'",10);
+		assertEquals(out.getOutput(), outH.borrow("hey").getOutput());
+		assertEquals(out.getState(), outH.borrow("hey").getState());
+		
+		Output outcop = new Output("Your input should in this format:'useremail,ISBN,copynumber'",10);
+		assertEquals(outcop.getOutput(), outH.borrow("Zhibo@carleton.ca,7777777777777,hey").getOutput());
+		assertEquals(outcop.getState(), outH.borrow("Zhibo@carleton.ca,7777777777777,hey").getState());
+		
+		Output outcop2 = new Output("Your input should in this format:'useremail,ISBN,copynumber'",10);
+		assertEquals(outcop2.getOutput(), outH.borrow("Zhibo@carleton.ca,hey,1").getOutput());
+		assertEquals(outcop2.getState(), outH.borrow("Zhibo@carleton.ca,hey,1").getState());
+		
+		Output out2 = new Output("Success!",3);
+		Output borrow = outH.borrow("Kevin@carleton.ca,9781442616899,1");
+		assertEquals(out2.getOutput(), borrow.getOutput());
+		assertEquals(out2.getState(), borrow.getState());
+		
+		Output outCopy = new Output("Copynumber Invalid!",2);
+		Output borrow2 = outH.borrow("Kevin@carleton.ca,9781442667181,1");
+		assertEquals(out2.getOutput(), borrow.getOutput());
+		assertEquals(out2.getState(), borrow.getState());
+		
+		Output outCopy2 = new Output("ISBN Invalid!",2);
+		Output borrow3 = outH.borrow("Kevin@carleton.ca,9781442667189,1");
+		assertEquals(out2.getOutput(), borrow.getOutput());
+		assertEquals(out2.getState(), borrow.getState());
+		
+		Output out3 = new Output("Please pay your fine first because Outstanding Fee Exists!",13);
+		assertEquals(out3.getOutput(), outH.borrow("Zhibo@carleton.ca,9781611687910,1").getOutput());
+		assertEquals(out3.getState(), outH.borrow("Zhibo@carleton.ca,9781611687910,1").getState());
+		
+		Output out5 = new Output("The Item is Not Available!",3);
+		assertEquals(out5.getOutput(), outH.borrow("Zhibo@carleton.ca,9781442616899,1").getOutput());
+		assertEquals(out5.getState(), outH.borrow("Zhibo@carleton.ca,9781442616899,1").getState());
+		
+		Output out4 = new Output("The User Does Not Exist!",10);
+		assertEquals(out4.getOutput(), outH.borrow("cole@me.com,7777777777778,1").getOutput());
+		assertEquals(out4.getState(), outH.borrow("cole@me.com,7777777777778,1").getState());
+		
+		List<Loan> loanList = loanTable.getLoanTable();
+    		Loan loan1=new Loan(1,"7777777777779","1",new Date(),"0","17");
+    		Loan loan3=new Loan(1,"7777777777773","1",new Date(),"0","8");
+    		Loan loan2=new Loan(1,"7777777777771","1",new Date(),"0","9");
+    		loanList.add(loan1);
+    		loanList.add(loan2);
+    		loanList.add(loan3);
+    		
+    		Output out9 = new Output("The Maximun Number of Items is Reached!",3);
+    		assertEquals(out9.getOutput(), outH.borrow("Yu@carleton.ca,7777777777777,1").getOutput());
+    		assertEquals(out9.getState(), outH.borrow("Yu@carleton.ca,7777777777777,1").getState());
 	}
 	
 	

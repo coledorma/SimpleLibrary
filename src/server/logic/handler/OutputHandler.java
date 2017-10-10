@@ -188,4 +188,40 @@ public class OutputHandler {
 		return output;
 	}
 	
+	public Output borrow(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+        boolean email=strArray[0].contains("@");
+        int userid=UserTable.getInstance().lookup(strArray[0]);
+        Object result="";
+        if(strArray.length!=3 || email!=true){
+        		output.setOutput("Your input should in this format:'useremail,ISBN,copynumber'");
+        		output.setState(BORROW);
+        }else if(userid==-1){
+        		output.setOutput("The User Does Not Exist!");
+        		output.setState(BORROW);
+        }else{
+        		boolean ISBN=isInteger(strArray[1]);
+        		boolean copynumber=isNumber(strArray[2]);
+        		if(ISBN!=true || copynumber!=true){
+        			output.setOutput("Your input should in this format:'useremail,ISBN,copynumber'");
+        			output.setState(BORROW);
+        		}else{
+        			result=LoanTable.getInstance().createloan(userid, strArray[1], strArray[2], new Date(), userid + "17");
+        			if(result.equals("success")){
+        				output.setOutput("Success!");
+        				output.setState(USER);
+        			} else if (result.equals("Outstanding Fee Exists")) {
+        				output.setOutput("Please pay your fine first because " + result + "!");
+        				output.setState(PAYFINE);
+        			}else{
+        				output.setOutput(result+"!");
+        				output.setState(USER);
+        			}
+        		}
+        }
+		return output;
+	}
+	
 }
