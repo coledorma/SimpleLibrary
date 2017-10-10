@@ -10,7 +10,7 @@ import server.logic.handler.OutputHandler;
 import server.logic.handler.model.Output;
 import server.logic.handler.model.ServerOutput;
 
-public class AddItemTests {
+public class AddUserTests {
 	InputHandler inH = null;
 	OutputHandler outH = null;
 	
@@ -21,7 +21,7 @@ public class AddItemTests {
 	}
 	
 	@Test
-	public void passAddItemCase1() {	
+	public void passAddUserCase1() {	
 		String output = "";
 		Output o = new Output("",0);
 		ServerOutput oo = new ServerOutput(output,o.getState());
@@ -33,10 +33,10 @@ public class AddItemTests {
 		o = outH.clerkLogin("admin");
 		
 		//State is now CLERK
-		oo = inH.processInput("create item", o.getState());
+		oo = inH.processInput("create user", o.getState());
 		
-		//State is now CREATEITEM
-		oo = inH.processInput("9781442668584", oo.getState());
+		//State is now CREATEUSER
+		oo = inH.processInput("coledorma@carleton.ca,cole", oo.getState());
 		
 		Output actual = new Output(oo.getOutput(), oo.getState());
 		
@@ -47,25 +47,22 @@ public class AddItemTests {
 	}
 	
 	@Test
-	public void passAddItemCase2() {	
+	public void passAddUserCase2() {	
 		String output = "";
 		Output o = new Output("",0);
 		ServerOutput oo = new ServerOutput(output,o.getState());
 		
-		Output expected = new Output("Success!", 2);
+		Output expected = new Output("The User Already Exists!", 2);
 		
 		oo = inH.processInput("CLERK", InputHandler.CLERKLOGIN);
 		
 		o = outH.clerkLogin("admin");
 		
 		//State is now CLERK
-		oo = inH.processInput("create item", o.getState());
+		oo = inH.processInput("create user", o.getState());
 		
-		//State is now CREATEITEM
-		oo = inH.processInput("7777777777689", oo.getState());
-		
-		//State is now CREATETITLE
-		oo = inH.processInput("7777777777689,Cole's Book", oo.getState());
+		//State is now CREATEUSER
+		oo = inH.processInput("Zhibo@carleton.ca,zhibo", oo.getState());
 		
 		Output actual = new Output(oo.getOutput(), oo.getState());
 		
@@ -75,25 +72,22 @@ public class AddItemTests {
 	}
 	
 	@Test
-	public void failAddItem() {	
+	public void failAddUser() {	
 		String output = "";
 		Output o = new Output("",0);
 		ServerOutput oo = new ServerOutput(output,o.getState());
 		
-		Output expected = new Output("Wrong Password!Please Input The Password:", 2);
+		Output expected = new Output("Your input should in this format:'username,password'", 2);
 		
 		oo = inH.processInput("CLERK", InputHandler.CLERKLOGIN);
 		
-		o = outH.clerkLogin("hey");
+		o = outH.clerkLogin("admin");
 		
 		//State is now CLERK
-		oo = inH.processInput("create item", o.getState());
+		oo = inH.processInput("create user", o.getState());
 		
-		//State is now CREATEITEM
+		//State is now CREATEUSER
 		oo = inH.processInput("7777777777689", oo.getState());
-		
-		//State is now CREATETITLE
-		oo = inH.processInput("7777777777689,Cole's Book", oo.getState());
 		
 		Output actual = new Output(oo.getOutput(), oo.getState());
 		
